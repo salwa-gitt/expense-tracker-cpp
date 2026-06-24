@@ -1,1 +1,4 @@
-expenses.txt
+build/
+*.exe
+*.out
+*.o
