@@ -28,6 +28,23 @@ class ExpenseManager
         void deleteExpense(const std::string& cat);
 
         // update the category given to it 
-        //void updateExpense(const std::string& cat);
+        void updateExpense(const std::string& cat);
 
+        // sorting all the Expenses
+        void sortExpenses();
+
+        // sorting by category
+        void sortByCategory();
+
+        // sorting by Amount
+        void sortByAmount();
+
+        // giving the highest Expense ever
+        void highestExpense();
+
+        // giving the lowest Expense ever
+        void lowestExpense();
+
+        // giving the total amount of the expenses
+        void totalSumOfExpenses();
 };

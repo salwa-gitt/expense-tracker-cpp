@@ -7,7 +7,7 @@ int main(void)
     Expense ex1("water", 300);
     Expense ex2("food", 200);
     Expense ex3("food", 30);
-    Expense ex4("French Fries", 150);
+    Expense ex4("French Fries", 30);
     Expense ex5("Banana", 500);
 
 
@@ -19,6 +19,9 @@ int main(void)
     manager.addExpense(ex4);
     manager.addExpense(ex5);
     
-    manager.searchCategory("food");
+    manager.highestExpense();
+    manager.lowestExpense();
+
+    manager.totalSumOfExpenses();
     return 0;
 }
