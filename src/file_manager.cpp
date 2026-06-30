@@ -47,6 +47,72 @@ std::vector<Expense> FileManager::loadFromFile()
     // opening file for reading
     std::ifstream file(filepath);
 
-    // making sure it handles error amazingly when file is not there
+    // making sure if file is not there or it's empty so it return NULL instead of crashing
     if (!file)
+    {
+        return expenses;
+    }
+
+    std::string line;
+    
+    // read the header and ignores it
+    std::getline(file, line);
+
+    // read the dash line after the header and ignores it
+    std::getline(file, line);
+
+    while (std::getline(file, line))
+    {
+        // Skip entirely empty lines
+        if (line.empty() || line.find_first_not_of(" \t\n\v\f\r") == std::string::npos)
+            continue;
+        
+        std::stringstream ss(line);
+
+        std::string catStr, amountStr;
+
+        std::getline(ss, catStr, '|');
+        std::getline(ss, amountStr, '|');
+
+        trim(catStr);
+        trim(amountStr);
+
+        // checking if amount is empty if yes then ignore it
+        if (amountStr.empty())
+            continue;
+
+        float amount = 0;
+
+        try
+        {
+            amount = std::stof(amountStr);
+
+        }
+        catch(...)
+        {
+            // if any errors skip it
+            continue;
+        }
+
+        Expense ex(catStr, amount);
+        
+        expenses.push_back(ex);
+    }
+    
+    return expenses;
+}
+
+// Trim whitespace from strings
+void FileManager::trim(std::string& str)
+{
+    const std::string whitespace = " \t\n\r\f\v";
+
+    const auto start = str.find_first_not_of(whitespace);
+    if (start == std::string::npos) {
+        str.clear();
+        return;
+    }
+
+    const auto end = str.find_last_not_of(whitespace);
+    str = str.substr(start, end - start + 1);
 }

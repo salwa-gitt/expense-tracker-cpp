@@ -17,4 +17,7 @@ class FileManager
 
         // Load all the expenses from the file
         std::vector<Expense> loadFromFile();
+
+        // Trim whitespace from strings
+        void trim(std::string& str);
 };
