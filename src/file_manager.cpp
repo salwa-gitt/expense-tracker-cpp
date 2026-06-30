@@ -5,7 +5,11 @@
 #include "expense.h"
 #include "file_manager.h"
 
-
+FileManager::FileManager(const std::string& path)
+: filepath(path)
+{
+    ensureFileExists();
+}
 
 // Save all the expense list to the file 
 void FileManager::saveToFile(const std::vector<Expense>& expenses)
