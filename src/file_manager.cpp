@@ -116,3 +116,28 @@ void FileManager::trim(std::string& str)
     const auto end = str.find_last_not_of(whitespace);
     str = str.substr(start, end - start + 1);
 }
+
+
+// to make sure file exists if not so it will make the file 
+void FileManager::ensureFileExists()
+{
+    // ensure directory exists
+    std::filesystem::path p = std::filesystem::path(filePath).parent_path();
+    if (!p.empty())
+    {
+        std::filesystem::create_directories(p);
+    }
+
+    // if file doesn't exist, create and write header
+    if (!std::filesystem::exists(filePath))
+    {
+        std::ofstream createFile(filePath);
+        if (createFile)
+        {
+            createFile << std::left << std::setw(20) << "Expense" << " | "
+            << std::right << std::setw(10) << "Amount" << "\n";
+
+            file << std::string(30, '-') << '\n';
+        }
+    }
+}
