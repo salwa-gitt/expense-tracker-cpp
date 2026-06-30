@@ -8,7 +8,7 @@ class FileManager
 {
     private:
         // making var for the path way so incase of updating i will be updating just in one place
-        std::string filepath;
+        std::string filepath = "data/expenses.txt";
 
     public:
         
