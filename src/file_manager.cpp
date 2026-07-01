@@ -2,6 +2,8 @@
 #include <fstream>
 #include <iomanip>
 #include <string>
+#include <sstream>
+#include <filesystem>
 #include "expense.h"
 #include "file_manager.h"
 

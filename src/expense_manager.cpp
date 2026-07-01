@@ -2,6 +2,7 @@
 #include "expense.h"
 // for making sure the input is correct
 #include "input_utils.h"
+#include "file_manager.h"
 #include <iostream>
 #include <string>
 #include <limits>
