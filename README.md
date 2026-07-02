@@ -25,6 +25,7 @@ A robust, object-oriented Command Line Interface (CLI) application built in C++ 
 
 ### Intelligent Expense Updating
 *Handles multiple entries under the same category safely:*
+
 ![Update Expense](pics/updateExpense.png)
 
 ### Highest Expense Filter
@@ -79,9 +80,5 @@ expense_tracker/
     ├── file_manager.h      # File manager class definition
     ├── input_utils.h       # Validation utilities for user input
     └── main.cpp            # Application entry point and menu loop
-
-```
-
-```
 
 ```
