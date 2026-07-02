@@ -1,40 +1,87 @@
-# Expense Tracker (C++)
+```markdown
+# Expense Tracker System
 
-This is a console-based Expense Tracker application built using C++. The program allows users to manage and analyze their daily expenses by storing data in categories and performing basic operations on them.
+A robust, object-oriented Command Line Interface (CLI) application built in C++ designed to manage daily expenses efficiently. The system persistently stores records in a text file, automatically manages file system configurations, and handles complex operational edge cases like duplicate categories seamlessly.
 
-## Features
+---
 
-* Add new expenses with amount and category
-* Display all stored expenses
-* Calculate total expenses
-* Search expenses by category
-* Update existing expenses
-* Delete expenses
-* Save expenses to a file
-* Load expenses from a file automatically
-* Summarize expenses by category (grouped totals)
+## 🚀 Features
 
-## How it works
+* **Persistent Storage:** Data is saved securely inside a localized text file (`data/expenses.txt`).
+* **Self-Repairing Directory:** Automatically creates the required folders and files if they do not exist on launch.
+* **Smart Update & Delete:** If multiple expenses share the same category, the system prompts you to choose the exact entry you want to modify or remove.
+* **Flexible Sorting:** Sort your entire expense history ascending/descending by amount, or alphabetically (A-Z / Z-A) by category.
+* **Financial Analytics:** Instantly view statistics including highest expense, lowest expense, and the total sum of all expenditures.
 
-The program uses an object-oriented approach with a class to represent each expense. All expenses are stored in an array.
+---
 
-Data is saved in a text file so that it is not lost when the program closes. When the program starts, it reads the file and loads previous data automatically.
+## 📷 Screenshots
 
-The category summary feature groups expenses with the same category and calculates the total amount for each group.
+### Main Menu & Overview
+![Main Menu](pics/main%20menu.png)
 
-## Concepts used
+### Displaying All Current Expenses
+![Display Expenses](pics/displayingExpenses.png)
 
-* Object-Oriented Programming (classes and objects)
-* Dynamic memory allocation
-* File handling (reading and writing files)
-* Arrays and loops
-* String handling using character arrays
-* Basic data grouping and aggregation logic
+### Intelligent Expense Updating
+*Handles multiple entries under the same category safely:*
+![Update Expense](pics/updateExpense.png)
 
-## How to run
+### Highest Expense Filter
+![Highest Expense](pics/highestExpense.png)
 
-Compile the program using a C++ compiler:
+### Underlying Text Database Storage (`data/expenses.txt`)
+![Database File](pics/txtFile.png)
 
+---
+
+## 🛠️ Installation & Setup
+
+### Prerequisites
+Make sure you have a C++ compiler installed (like `g++`). 
+
+### Build and Run Instructions
+Open your terminal inside the root directory of the project and execute the following commands:
+
+1. **Compile the project modules:**
+   ```bash
+   g++ src/main.cpp src/expense.cpp src/expense_manager.cpp src/file_manager.cpp -o build/main
+
+```
+
+2. **Run the compiled executable:**
 ```bash
-g++ main.cpp -o app
+build/main
+
+```
+
+
+
+> 📁 **Note:** You do not need to manually create any storage directories. The system will automatically build the `data/` folder and `expenses.txt` data file upon your very first launch.
+
+---
+
+## 📁 Project Directory Structure
+
+```text
+expense_tracker/
+├── build/
+│   └── main                # Compiled executable
+├── data/
+│   └── expenses.txt        # Automatically generated flat-file database
+├── pics/                   # Application demonstration images
+└── src/
+    ├── expense_manager.cpp # Core business logic implementation
+    ├── expense_manager.h   # Manager class definition
+    ├── expense.cpp         # Expense entity implementation
+    ├── expense.h           # Expense class definition
+    ├── file_manager.cpp    # File I/O operations & directory generation
+    ├── file_manager.h      # File manager class definition
+    ├── input_utils.h       # Validation utilities for user input
+    └── main.cpp            # Application entry point and menu loop
+
+```
+
+```
+
 ```
