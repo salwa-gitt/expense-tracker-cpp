@@ -16,6 +16,7 @@ FileManager::FileManager(const std::string& path)
 // Save all the expense list to the file 
 void FileManager::saveToFile(const std::vector<Expense>& expenses)
 {
+    ensureFileExists();
     // making the file
     std::ofstream file(filepath);
 
@@ -23,7 +24,7 @@ void FileManager::saveToFile(const std::vector<Expense>& expenses)
     if (!file)
     {
         std::cout << "Error: couldn't open file for writing: " << filepath << std::endl;
-        return 1;
+        return;
     }
 
     
@@ -128,22 +129,22 @@ void FileManager::trim(std::string& str)
 void FileManager::ensureFileExists()
 {
     // ensure directory exists
-    std::filesystem::path p = std::filesystem::path(filePath).parent_path();
+    std::filesystem::path p = std::filesystem::path(filepath).parent_path();
     if (!p.empty())
     {
         std::filesystem::create_directories(p);
     }
 
     // if file doesn't exist, create and write header
-    if (!std::filesystem::exists(filePath))
+    if (!std::filesystem::exists(filepath))
     {
-        std::ofstream createFile(filePath);
+        std::ofstream createFile(filepath);
         if (createFile)
         {
             createFile << std::left << std::setw(20) << "Expense" << " | "
             << std::right << std::setw(10) << "Amount" << "\n";
 
-            file << std::string(30, '-') << '\n';
+            createFile << std::string(30, '-') << '\n';
         }
     }
 }

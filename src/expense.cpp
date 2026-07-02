@@ -37,7 +37,6 @@ std::string Expense::getCategory() const
 // function that displays amount and category of an object
 void Expense::displayExpense()
 {
-    // left-aligns category in a 20-character space, right-aligns amount with 2 decimal places
-    std::cout << std::left << std::setw(20) << category 
-              << std::fixed << std::setprecision(2) << amount << "\n";
+    std::cout << std::left << std::setw(20) << getCategory() << " | "
+          << std::right << std::setw(10) << getAmount() << '\n';
 }

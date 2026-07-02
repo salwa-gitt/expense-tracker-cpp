@@ -9,10 +9,17 @@
 #include <algorithm>
 #include <iomanip>
 
+// it will load the file data automatically when the program runs
+ExpenseManager::ExpenseManager()
+{
+    expenses = fileManager.loadFromFile();
+}
+
 // add new expenses to the database
 void ExpenseManager::addExpense(const Expense& e)
 {
     expenses.push_back(e);
+    fileManager.saveToFile(expenses);
     std::cout << "\nExpense added successfully!" << std::endl;
 }
 
@@ -29,7 +36,6 @@ void ExpenseManager::displayAllExpenses()
     {
         std::cout << "\n";
         expense.displayExpense();
-        std::cout << "\n-------------------------------------------------------------------------------------------------\n";
         
     }
 }
@@ -45,7 +51,6 @@ void ExpenseManager::searchCategory(const std::string& cat)
         {
             std::cout << "\n";
             expense.displayExpense();
-            std::cout << "\n-------------------------------------------------------------------------------------------------\n";
             found = true;
         }
     }
@@ -57,40 +62,59 @@ void ExpenseManager::searchCategory(const std::string& cat)
 
 }
 
-// show the total sum of all the expenses
-float ExpenseManager::totalExpenses()
-{
-    float totalSum = 0;
-
-    for (const auto& expense : expenses)
-    {
-        totalSum += expense.getAmount();
-    }
-
-    return totalSum;
-}
 
 // it deletes the category given to it
 void ExpenseManager::deleteExpense(const std::string& cat)
 {
-    bool found = false;
-
-    for (auto ex = expenses.begin(); ex != expenses.end(); ex++)
-    {
-        if (ex->getCategory() == cat)
-        {
-            expenses.erase(ex);
-            std::cout << "\nExpense deleted successfully!\n";
-            found = true;
-            return;
-        }
-
-    }
-    if(!found)
-    {
-        std::cout << "\nExpense not found\n";
-    }
     
+
+    // for storing the indxs of the categories that matches the input
+    std::vector<int> matches;
+
+    // checking if the database is empty or not
+    if (expenses.empty())
+    {
+        std::cout << "\nNo expenses available\n" << std::endl;
+        return;
+    }
+
+    // looping through the database and storing all the categories that matches the input
+    for (int i = 0; i < expenses.size(); i++)
+    {
+        // show all the expenses matches to the input also save it's indx num to the matches vector
+        if (expenses[i].getCategory() == cat)
+        {
+            matches.push_back(i);
+            std::cout << matches.size() << ". "
+            << expenses[i].getCategory() << "- "
+            << expenses[i].getAmount() << "\n";
+        }
+    }
+
+    if (matches.empty())
+    {
+        std::cout << "\nNo expenses found\n";
+        return;
+    }
+
+    // take user choice for which expense to delete
+    int expenseChoice = getValidInput<int>("\nEnter Choice: ");
+
+    // make sure they input is correct
+    if (expenseChoice < 1 || expenseChoice > matches.size())
+    {
+        std::cout << "\nInvalid Selection!\n";
+        return;
+    }
+
+    int index = matches[expenseChoice - 1];
+
+    // it points to the start of vec then add the indx to create the correct iterator
+    expenses.erase(expenses.begin() + index); 
+    fileManager.saveToFile(expenses);
+    std::cout << "\nExpense deleted successfully!\n";
+    return;
+
 }
 
 // update the category given to it 
@@ -185,6 +209,7 @@ void ExpenseManager::updateExpense(const std::string& cat)
         }
     }
 
+    fileManager.saveToFile(expenses);
     std::cout << "\nExpense updated successfully!\n";
 }
 
