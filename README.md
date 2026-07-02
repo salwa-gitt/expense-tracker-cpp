@@ -1,4 +1,3 @@
-```markdown
 # Expense Tracker System
 
 A robust, object-oriented Command Line Interface (CLI) application built in C++ designed to manage daily expenses efficiently. The system persistently stores records in a text file, automatically manages file system configurations, and handles complex operational edge cases like duplicate categories seamlessly.
@@ -7,30 +6,36 @@ A robust, object-oriented Command Line Interface (CLI) application built in C++ 
 
 ## 🚀 Features
 
-* **Persistent Storage:** Data is saved securely inside a localized text file (`data/expenses.txt`).
-* **Self-Repairing Directory:** Automatically creates the required folders and files if they do not exist on launch.
-* **Smart Update & Delete:** If multiple expenses share the same category, the system prompts you to choose the exact entry you want to modify or remove.
-* **Flexible Sorting:** Sort your entire expense history ascending/descending by amount, or alphabetically (A-Z / Z-A) by category.
-* **Financial Analytics:** Instantly view statistics including highest expense, lowest expense, and the total sum of all expenditures.
+- **Persistent Storage:** Data is saved securely inside a localized text file (`data/expenses.txt`).
+- **Self-Repairing Directory:** Automatically creates the required folders and files if they do not exist on launch.
+- **Smart Update & Delete:** If multiple expenses share the same category, the system prompts you to choose the exact entry to modify or remove.
+- **Flexible Sorting:** Sort your expense history by amount (ascending/descending) or alphabetically (A–Z / Z–A) by category.
+- **Financial Analytics:** View statistics including highest expense, lowest expense, and total expenditures.
 
 ---
 
 ## 📷 Screenshots
 
 ### Main Menu & Overview
+
 ![Main Menu](pics/main%20menu.png)
 
 ### Displaying All Current Expenses
+
 ![Display Expenses](pics/displayingExpenses.png)
 
 ### Intelligent Expense Updating
-*Handles multiple entries under the same category safely:*
+
+*Handles multiple entries under the same category safely.*
+
 ![Update Expense](pics/updateExpense.png)
 
 ### Highest Expense Filter
+
 ![Highest Expense](pics/highestExpense.png)
 
 ### Underlying Text Database Storage (`data/expenses.txt`)
+
 ![Database File](pics/txtFile.png)
 
 ---
@@ -38,26 +43,26 @@ A robust, object-oriented Command Line Interface (CLI) application built in C++ 
 ## 🛠️ Installation & Setup
 
 ### Prerequisites
-Make sure you have a C++ compiler installed (like `g++`). 
 
-### Build and Run Instructions
-Open your terminal inside the root directory of the project and execute the following commands:
+Make sure you have a C++ compiler installed (such as `g++`).
 
-1. **Compile the project modules:**
-   ```bash
-   g++ src/main.cpp src/expense.cpp src/expense_manager.cpp src/file_manager.cpp -o build/main
+### Build and Run
 
+Open a terminal in the project's root directory.
+
+#### Compile
+
+```bash
+g++ src/main.cpp src/expense.cpp src/expense_manager.cpp src/file_manager.cpp -o build/main
 ```
 
-2. **Run the compiled executable:**
+#### Run
+
 ```bash
 build/main
-
 ```
 
-
-
-> 📁 **Note:** You do not need to manually create any storage directories. The system will automatically build the `data/` folder and `expenses.txt` data file upon your very first launch.
+> 📁 **Note:** The application automatically creates the `data/` folder and `expenses.txt` file during its first launch. No manual setup is required.
 
 ---
 
@@ -66,22 +71,22 @@ build/main
 ```text
 expense_tracker/
 ├── build/
-│   └── main                # Compiled executable
+│   └── main
 ├── data/
-│   └── expenses.txt        # Automatically generated flat-file database
-├── pics/                   # Application demonstration images
+│   └── expenses.txt
+├── pics/
+│   ├── main menu.png
+│   ├── displayingExpenses.png
+│   ├── updateExpense.png
+│   ├── highestExpense.png
+│   └── txtFile.png
 └── src/
-    ├── expense_manager.cpp # Core business logic implementation
-    ├── expense_manager.h   # Manager class definition
-    ├── expense.cpp         # Expense entity implementation
-    ├── expense.h           # Expense class definition
-    ├── file_manager.cpp    # File I/O operations & directory generation
-    ├── file_manager.h      # File manager class definition
-    ├── input_utils.h       # Validation utilities for user input
-    └── main.cpp            # Application entry point and menu loop
-
-```
-
-```
-
+    ├── expense_manager.cpp
+    ├── expense_manager.h
+    ├── expense.cpp
+    ├── expense.h
+    ├── file_manager.cpp
+    ├── file_manager.h
+    ├── input_utils.h
+    └── main.cpp
 ```
